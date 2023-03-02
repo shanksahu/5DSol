@@ -5,6 +5,7 @@ const bodyparser = require('body-parser')
 const app = express()
 require('dotenv').config()
 
+
 //mongoDB connection 
 require('./src/dbConnections')
 
@@ -35,9 +36,12 @@ app.use((req, res, next) => {
         ss: date.getSeconds(),
         ms: date.getMilliseconds()
     }
-    // console.log(req.startTime);
     next()
 })
+
+//creating uplode folder 
+let folderCreate = require("./src/utils/isFolderExist")
+folderCreate()
 
 //redirect to the router
 app.use(routes)
